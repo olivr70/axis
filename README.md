@@ -13,6 +13,7 @@ axis.isBoolean(true); // true
 axis.isNumber(1); // true
 axis.isNull(null); // true
 axis.isUndefined(); // true
+axis.type(); // String
 ```
 
 ## Installing with Bower
@@ -24,7 +25,7 @@ bower install https://github.com/toddmotto/axis.git
 
 ## Manual installation
 Ensure you're using the files from the `dist` directory (contains compiled production-ready code). Ensure you place the script before the closing `</body>` tag.
-  
+
 ```html
 <body>
   <!-- html above -->
@@ -40,6 +41,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release history
 
+- 1.1.1
+  - Export of a typeFor function to get the lowercase type name of an object
+  - Added a "main" entry in package.json
 - 1.1.0
   - Rewrite to dynamically create functions, thanks [jeremenichelli](https://github.com/toddmotto/axis/pull/1)
 - 1.0.0
