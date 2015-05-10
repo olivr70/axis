@@ -13,7 +13,9 @@ axis.isBoolean(true); // true
 axis.isNumber(1); // true
 axis.isNull(null); // true
 axis.isUndefined(); // true
-axis.type(); // String
+axis.typeFor(1); // "number"
+axis.typeFor([]); // "array"
+...
 ```
 
 ## Installing with Bower
