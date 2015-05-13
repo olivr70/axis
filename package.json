@@ -5,7 +5,7 @@
   "author": "@toddmotto",
   "contributor": {
     "name": "Olivier Chevet"
-  }
+  },
   "license":"MIT",
   "homepage": "https://github.com/toddmotto/axis",
   "devDependencies": {
