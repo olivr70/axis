@@ -3,8 +3,12 @@
   "version": "1.1.1",
   "description": "Simple JavaScript type checking module. Returns a Boolean for each type check.",
   "author": "@toddmotto",
-  "contributor": {
+  "contributors": [{
     "name": "Olivier Chevet"
+  }],
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/olivr70/axis.git"
   },
   "license":"MIT",
   "homepage": "https://github.com/toddmotto/axis",
