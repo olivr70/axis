@@ -4,9 +4,9 @@
   "description": "Simple JavaScript type checking module. Returns a Boolean for each type check.",
   "author": "@toddmotto",
   "contributor": {
-    "name":"Olivier Chevet",
+    "name": "Olivier Chevet"
   }
-  "license": "MIT",
+  "license":"MIT",
   "homepage": "https://github.com/toddmotto/axis",
   "devDependencies": {
     "gulp": "~3.7.0",
