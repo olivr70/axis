@@ -13,6 +13,7 @@ axis.isBoolean(true); // true
 axis.isNumber(1); // true
 axis.isNull(null); // true
 axis.isUndefined(); // true
+axis.isPlain( {} ); // true
 axis.typeFor(1); // "number"
 axis.typeFor([]); // "array"
 ...
@@ -42,7 +43,8 @@ Ensure you're using the files from the `dist` directory (contains compiled produ
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using Gulp.
 
 ## Release history
-
+- 1.1.2
+  - Export of a isPlain function to detect plain Javascript objects (without a contructor)
 - 1.1.1
   - Export of a typeFor function to get the lowercase type name of an object
   - Added a "main" entry in package.json

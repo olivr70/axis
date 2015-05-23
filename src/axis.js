@@ -23,6 +23,8 @@
   // we use an object for lookups of lowercase strings and avoid String creation
   exports.typeFor = function (x) { return lowerTypes[type.call(x)]; };
 
+  exports.isPlain = function (x) { return x.constructor === Object; }
+
   for (var i = types.length; i--;) {
     lowerTypes[types[i]] = types[i].toLowerCase();
     exports['is' + types[i]] = (function (self) {
