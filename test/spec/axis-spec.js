@@ -82,6 +82,24 @@ describe('axis', function () {
       expect(axis.isNumber(mock)).toBe(true);
     });
   });
+  describe('axis.isNull', function () {
+    var mock;
+    beforeEach(function () {
+      mock = null;
+    });
+    it('should return a true if a Null', function () {
+      expect(axis.isNull(mock)).toBe(true);
+    });
+  });
+  describe('axis.isUndefined', function () {
+    var mock;
+    beforeEach(function () {
+      mock = null;
+    });
+    it('should return a true if a undefined', function () {
+      expect(axis.isUndefined()).toBe(true);
+    });
+  });
 
   describe('axis.typeFor', function () {
     it('should return "array" for a Array', function () {
@@ -107,6 +125,15 @@ describe('axis', function () {
     });
     it('should return "number" for a Number', function () {
       expect(axis.typeFor(1)).toEqual("number");
+    });
+    it('should return "undefined" for an undefined value', function () {
+      var o = {};
+      expect(axis.typeFor()).toEqual("undefined");
+      expect(axis.typeFor(undefined)).toEqual("undefined");
+      expect(axis.typeFor(o["x"])).toEqual("undefined");
+    });
+    it('should return "null" for a null value', function () {
+      expect(axis.typeFor(null)).toEqual("null");
     });
 
   });

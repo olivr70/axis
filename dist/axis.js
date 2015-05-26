@@ -1,6 +1,6 @@
-/*! axis.js v1.1.2 | (c) 2015 @toddmotto | https://github.com/toddmotto/axis */
+/*! axis.js v1.1.3 | (c) 2015 @toddmotto | https://github.com/toddmotto/axis */
 /*! axis.js v1.1.1 | (c) 2014 @toddmotto | https://github.com/toddmotto/axis */
-(function (root, factory) {
+(function (root, factory) { 'use strict';
   if (typeof define === 'function' && define.amd) {
     define([], factory);
   } else if (typeof exports === 'object') {
@@ -8,7 +8,7 @@
   } else {
     root.axis = factory();
   }
-}(window,function () {
+}(window,function () { 'use strict';
 
   var exports = {};
 
@@ -23,7 +23,13 @@
   };
   // typeFor returns the type in lowercase.
   // we use an object for lookups of lowercase strings and avoid String creation
-  exports.typeFor = function (x) { return lowerTypes[type.call(x)]; };
+  exports.typeFor = function (x) {
+    return x === undefined ?
+        'undefined' :
+        (x === null ?
+            'null'
+            : lowerTypes[type.call(x)]);
+      };
 
   exports.compareTypes = function(xValue, yValue) {
     var x = typeOrder[type(xValue)], y = typeOrder[type(yValue)];
@@ -41,6 +47,8 @@
       };
     })(types[i]);
   }
+  exports.isNull = function (x) { return x === null; };
+  exports.isUndefined = function (x) { return x === undefined; };
 
   return exports;
 
