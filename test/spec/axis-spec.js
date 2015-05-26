@@ -111,6 +111,41 @@ describe('axis', function () {
 
   });
 
+  describe('axis.compareTypes', function() {
+    it('should provide same order for same types', function() {
+      expect(axis.compareTypes(true, false), 0);
+      expect(axis.compareTypes(10, 20), 0);
+      expect(axis.compareTypes("a", "b"), 0);
+      expect(axis.compareTypes(new Date(), new Date(2010, 1, 1)), 0);
+      expect(axis.compareTypes([ 0 ], [ 1 ]), 0);
+      expect(axis.compareTypes({ a: 0 }, { b: 1 } ), 0);
+      expect(axis.compareTypes(/a+/, /b+/ ), 0);
+      expect(axis.compareTypes( function() {}, function (x) { return x; }), 0);
+      expect(axis.compareTypes( null, null), 0);
+      expect(axis.compareTypes( undefined, undefined), 0);
+    });
+    it('should order different types properly', function() {
+      expect(axis.compareTypes(true, 10), -1, "Boolean before Number");
+      expect(axis.compareTypes(10, true), 1);
+      expect(axis.compareTypes(20, "beta"), -1, "Number before String");
+      expect(axis.compareTypes("alpha", 30), 1);
+      expect(axis.compareTypes("alpha", new Date()), -1, "String before Date");
+      expect(axis.compareTypes(new Date(), "beta"), 1);
+      expect(axis.compareTypes(new Date(), [ 1 ]), -1, "Date before Array");
+      expect(axis.compareTypes([ 0 ], new Date()), 1);
+      expect(axis.compareTypes([ 0 ], { b: 1 } ), -1, "Array before Object");
+      expect(axis.compareTypes({ a: 0 }, [ 1 ]), 1);
+      expect(axis.compareTypes({ a: 0 }, /b+/ ), -1, "Object before Regex");
+      expect(axis.compareTypes(/b+/, { a: 0 } ), 1);
+      expect(axis.compareTypes( /a+/, function () {}), -1, "Regex before function");
+      expect(axis.compareTypes( function () {}, /b+/), 1);
+      expect(axis.compareTypes( null, function () {}), -1);
+      expect(axis.compareTypes( function () {}, null), 1);
+      expect(axis.compareTypes( null, undefined), -1, "null before undefined");
+      expect(axis.compareTypes( undefined, null), 1);
+    });
+  });
+
   // PhantomJS [object DOMWindow] bug causing these to fail!
   // http://stackoverflow.com/questions/14218670/why-are-null-and-undefined-of-the-type-domwindow
   // describe('axis.isNull', function () {

@@ -9,12 +9,13 @@
   }
 }(window,function () {
 
-  'use strict';
-
   var exports = {};
 
-  var types = 'Array Object String Date RegExp Function Boolean Number Null Undefined'.split(' ');
+  var types = 'Boolean Number String Date Array Object RegExp Function Null Undefined'.split(' ');
+  /** type names in lowercase */
   var lowerTypes = {};
+  /** a map to get the ordering index of each type */
+  var typeOrder = {};
 
   var type = function () {
     return Object.prototype.toString.call(this).slice(8, -1);
@@ -23,10 +24,16 @@
   // we use an object for lookups of lowercase strings and avoid String creation
   exports.typeFor = function (x) { return lowerTypes[type.call(x)]; };
 
-  exports.isPlain = function (x) { return x.constructor === Object; }
+  exports.compareTypes = function(xValue, yValue) {
+    var x = typeOrder[type(xValue)], y = typeOrder[type(yValue)];
+    return x < y ? -1 : (x === y ? 0 : 1);
+  };
+
+  exports.isPlain = function (x) { return x.constructor === Object; };
 
   for (var i = types.length; i--;) {
     lowerTypes[types[i]] = types[i].toLowerCase();
+    typeOrder[types[i]] = i;
     exports['is' + types[i]] = (function (self) {
       return function (elem) {
         return type.call(elem) === self;
